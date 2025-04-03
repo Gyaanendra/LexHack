@@ -1,12 +1,44 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Gavel, Cpu, ShieldCheck, Scale, Users, Award } from "lucide-react"
+import { Gavel, Cpu, Scale } from "lucide-react"
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-slate-50 dark:bg-slate-900">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-blue-200 dark:via-pink-200 dark:to-yellow-200 z-0" />
+
+      {/* Shooting and Scattering Icons */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(35)].map((_, i) => {
+          // Randomized values for scattered motion
+          const delay = Math.random() * 3; // Reduce delay (faster intensity)
+          const duration = Math.random() * 2.5 + 1.5; // Faster speed (1.5s - 4s)
+          const startY = Math.random() * window.innerHeight; // Random start Y position
+          const endY = startY + (Math.random() * 500 - 250); // More scattering (-250px to +250px)
+          const endX = window.innerWidth + 100; // Ensure icons go beyond screen width
+          const Icon = i % 3 === 0 ? Gavel : i % 3 === 1 ? Cpu : Scale; // Cycle through icons
+          const color = i % 3 === 0 ? "text-purple-500 dark:text-pink-400"
+                       : i % 3 === 1 ? "text-blue-500 dark:text-green-400"
+                       : "text-red-500 dark:text-yellow-400";
+
+          return (
+            <motion.div
+              key={i}
+              initial={{ x: -100, y: startY, opacity: 1 }} // Start from left edge at random Y position
+              animate={{ x: endX, y: endY, opacity: 1 }} // Move right while scattering randomly in Y direction
+              transition={{ duration, delay, repeat: Infinity, ease: "easeOut" }} // Smooth shooting effect
+              className="absolute"
+            >
+              <Icon className={`h-10 w-10 ${color}`} /> {/* Increased size */}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Content Section */}
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -25,18 +57,12 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 mb-12"
+            className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 mb-12"
           >
             <h3 className="text-xl font-semibold mb-4">About CLTI</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
               The Center for Law, Technology & Innovation (CLTI) is dedicated to bridging the gap between law,
-              technology, and policy in an era of rapid digital transformation. Covering domains such as artificial
-              intelligence, blockchain, cybersecurity, fintech, and data privacy, CLTI equips students with the
-              expertise to address the legal, ethical, and regulatory challenges shaping the digital economy.
-            </p>
-            <p className="text-slate-600 dark:text-slate-300">
-              Through research, experiential learning, and interdisciplinary collaborations, we empower future leaders
-              to navigate and influence the evolving landscape of law and technology.
+              technology, and policy in an era of rapid digital transformation.
             </p>
           </motion.div>
 
@@ -45,68 +71,16 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700"
+            className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg border border-slate-200 dark:border-slate-700"
           >
             <h3 className="text-xl font-semibold mb-4">What is LEXHACK 2025?</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              LEXHACK 2025 is a one-of-a-kind interdisciplinary hackathon that challenges participants to develop,
-              defend, and present groundbreaking technological solutions while addressing the legal, compliance, and
-              regulatory implications associated with them.
+              LEXHACK 2025 is an interdisciplinary hackathon that challenges participants to develop, defend, and present
+              groundbreaking technological solutions.
             </p>
-            <p className="text-slate-600 dark:text-slate-300">
-              Unlike conventional hackathons that focus solely on technology, LEXHACK 2025 integrates law, policy, and
-              business strategy into the innovation process. Over an intense 24-hour competition, teams will
-              conceptualize, build, and pitch tech-driven solutions that are not only innovative and scalable but also
-              legally sound and commercially viable.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6"
-          >
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <Gavel className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Legal Innovation</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Reimagine legal services delivery</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <Cpu className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">AI Integration</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Leverage AI for legal challenges</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <ShieldCheck className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Cybersecurity</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Protect sensitive legal data</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <Scale className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Access to Justice</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Bridge the justice gap with tech</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <Users className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Collaboration</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Cross-disciplinary teamwork</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
-              <Award className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Recognition</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Showcase your legal-tech skills</p>
-            </div>
           </motion.div>
         </div>
       </div>
     </section>
   )
 }
-
