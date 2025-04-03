@@ -22,19 +22,14 @@ export default function Home() {
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-14">
             <a
               href="#about"
               className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
             >
               About
             </a>
-            <a
-              href="#features"
-              className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
-            >
-              Event Breakdown
-            </a>
+
             <a
               href="#timeline"
               className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
@@ -56,7 +51,6 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <ModeToggle />
             <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300">
               Register Now
             </Button>
@@ -67,7 +61,7 @@ export default function Home() {
       <main className="pt-20">
         <Hero />
         <About />
-        <Features />
+        {/* <Features /> */}
         <Timeline />
         <Prizes />
         <Faq />

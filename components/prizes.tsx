@@ -1,8 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Trophy, Briefcase, GraduationCap, Calendar, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion";
+import {
+  Trophy,
+  Briefcase,
+  GraduationCap,
+  Calendar,
+  Users,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Prizes() {
   return (
@@ -19,7 +25,8 @@ export default function Prizes() {
             Why Should You Participate?
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            LEXHACK 2025 offers unique opportunities for learning, networking, and recognition in the legal-tech space.
+            LEXHACK 2025 offers unique opportunities for learning, networking,
+            and recognition in the legal-tech space.
           </p>
         </motion.div>
 
@@ -38,7 +45,9 @@ export default function Prizes() {
                 <Trophy className="h-8 w-8 text-white" />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-indigo-900 dark:text-indigo-300">Prizes & Funding</h3>
+              <h3 className="text-2xl font-bold mb-4 text-indigo-900 dark:text-indigo-300">
+                Prizes & Funding
+              </h3>
 
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 <li className="flex items-start">
@@ -83,7 +92,9 @@ export default function Prizes() {
                 <Briefcase className="h-8 w-8 text-white" />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-purple-900 dark:text-purple-300">Internship & Networking</h3>
+              <h3 className="text-2xl font-bold mb-4 text-purple-900 dark:text-purple-300">
+                Internship & Networking
+              </h3>
 
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 <li className="flex items-start">
@@ -128,7 +139,9 @@ export default function Prizes() {
                 <GraduationCap className="h-8 w-8 text-white" />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-indigo-900 dark:text-indigo-300">Hands-on Learning</h3>
+              <h3 className="text-2xl font-bold mb-4 text-indigo-900 dark:text-indigo-300">
+                Hands-on Learning
+              </h3>
 
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 <li className="flex items-start">
@@ -173,27 +186,33 @@ export default function Prizes() {
             <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
               <Calendar className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
               <h4 className="font-semibold mb-2">Venue</h4>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">To be announced</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                To be announced
+              </p>
             </div>
 
             <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
               <Trophy className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-4" />
               <h4 className="font-semibold mb-2">Registration Fee</h4>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">₹150 per team</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                ₹150 per team
+              </p>
             </div>
 
             <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
               <Users className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
               <h4 className="font-semibold mb-2">Team Composition</h4>
               <p className="text-slate-600 dark:text-slate-400 text-sm">
-                Up to 5 members (must include at least one B.Tech student and one Law student)
+                Up to 5 members (must include at least one B.Tech student and
+                one Law student)
               </p>
             </div>
           </div>
 
           <div className="mt-8 text-center">
             <p className="text-slate-600 dark:text-slate-300 mb-6 font-medium">
-              ⏳ Limited Slots Available! Early registrations are recommended due to the high demand for participation.
+              ⏳ Limited Slots Available! Early registrations are recommended
+              due to the high demand for participation.
             </p>
             <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300 px-8 py-3 rounded-lg text-lg font-medium">
               Register Now
@@ -205,6 +224,5 @@ export default function Prizes() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useRef, useState } from "react"
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
+import { useRef, useState } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import {
   Calendar,
   Clock,
@@ -27,7 +27,25 @@ import {
   FileCode,
   Scroll,
   BookOpenCheck,
-} from "lucide-react"
+} from "lucide-react";
+// Define types for timeline items
+interface TimelineItem {
+  date: string;
+  time: string;
+  title: string;
+  description: string;
+  location: string;
+  tags: string[];
+  speakers: string[];
+  highlights: string[];
+  importance: "high" | "medium" | "critical";
+}
+
+// Define component props if any (currently none, but added for future extensibility)
+interface TimelineProps {}
+
+// Type for expanded items state
+type ExpandedItems = Record<number, boolean>;
 
 export default function Timeline() {
   const timelineItems = [
@@ -38,7 +56,10 @@ export default function Timeline() {
       description: "Welcome address, keynote speakers, and team formation.",
       location: "Main Auditorium",
       tags: ["Keynote", "Networking"],
-      speakers: ["Sarah Johnson, LegalTech Alliance", "Prof. David Chen, Harvard Law"],
+      speakers: [
+        "Sarah Johnson, LegalTech Alliance",
+        "Prof. David Chen, Harvard Law",
+      ],
       highlights: ["Welcome kit distribution", "Coffee and breakfast provided"],
       importance: "high",
     },
@@ -57,7 +78,8 @@ export default function Timeline() {
       date: "April 18, 2025",
       time: "9:00 AM - 10:00 AM",
       title: "Workshop: Legal API Integration",
-      description: "Learn how to integrate legal databases and APIs into your project.",
+      description:
+        "Learn how to integrate legal databases and APIs into your project.",
       location: "Workshop Room B",
       tags: ["Technical", "Workshop"],
       speakers: ["Alex Rivera, LexisNexis", "Maria Santos, API Specialist"],
@@ -68,69 +90,80 @@ export default function Timeline() {
       date: "April 18, 2025",
       time: "12:00 PM - 1:30 PM",
       title: "Networking Lunch",
-      description: "Connect with industry professionals and other participants over lunch.",
+      description:
+        "Connect with industry professionals and other participants over lunch.",
       location: "Atrium Garden",
       tags: ["Networking", "Food"],
       speakers: [],
-      highlights: ["Catered lunch included", "Seating arranged by interest areas"],
+      highlights: [
+        "Catered lunch included",
+        "Seating arranged by interest areas",
+      ],
       importance: "medium",
     },
     {
       date: "April 18, 2025",
       time: "2:00 PM - 3:00 PM",
       title: "Panel: Ethics in Legal Tech",
-      description: "Industry experts discuss ethical considerations in legal technology.",
+      description:
+        "Industry experts discuss ethical considerations in legal technology.",
       location: "Main Auditorium",
       tags: ["Panel", "Ethics"],
-      speakers: ["Judge Elena Rodriguez", "Dr. Michael Wei, Ethics Institute", "Catherine Park, Legal Aid Society"],
+      speakers: [
+        "Judge Elena Rodriguez",
+        "Dr. Michael Wei, Ethics Institute",
+        "Catherine Park, Legal Aid Society",
+      ],
       highlights: ["Q&A session", "Case study analysis"],
       importance: "high",
     },
-  ]
+  ];
 
-  const timelineRef = useRef(null)
-  const [expandedItems, setExpandedItems] = useState({})
-  const [activeDay, setActiveDay] = useState("All Days")
+  const timelineRef = useRef(null);
+  const [expandedItems, setExpandedItems] = useState({});
+  const [activeDay, setActiveDay] = useState("All Days");
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start end", "end end"],
-  })
+  });
 
   // Create a spring animation for the timeline progress
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
-  })
+  });
 
   // Group items by date for day filtering
-  const days = ["All Days", ...new Set(timelineItems.map((item) => item.date))]
+  const days = ["All Days", ...new Set(timelineItems.map((item) => item.date))];
 
   // Filter timeline items based on selected day
   const filteredItems =
-    activeDay === "All Days" ? timelineItems : timelineItems.filter((item) => item.date === activeDay)
+    activeDay === "All Days"
+      ? timelineItems
+      : timelineItems.filter((item) => item.date === activeDay);
 
   // Toggle expanded state for a timeline item
   const toggleExpanded = (index) => {
     setExpandedItems((prev) => ({
       ...prev,
       [index]: !prev[index],
-    }))
-  }
+    }));
+  };
 
   // Get importance styling
   const getImportanceStyles = (importance) => {
     switch (importance) {
       case "critical":
-        return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
+        return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
       case "high":
-        return "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300"
+        return "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300";
       case "medium":
-        return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+        return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300";
       default:
-        return "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300"
+        return "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300";
     }
-  }
+  };
 
   return (
     <section
@@ -185,7 +218,10 @@ export default function Timeline() {
         />
 
         {/* Flowing lines */}
-        <svg className="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute top-0 left-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <motion.path
             d="M0,100 C150,200 350,0 500,100 C650,200 850,0 1000,100 C1150,200 1350,0 1500,100 C1650,200 1850,0 2000,100"
             stroke="url(#gradient1)"
@@ -201,7 +237,11 @@ export default function Timeline() {
             transition={{
               pathLength: { duration: 2, ease: "easeInOut" },
               opacity: { duration: 0.5 },
-              y: { duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+              y: {
+                duration: 20,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
             }}
           />
           <motion.path
@@ -219,7 +259,11 @@ export default function Timeline() {
             transition={{
               pathLength: { duration: 2, ease: "easeInOut" },
               opacity: { duration: 0.5, delay: 0.5 },
-              y: { duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+              y: {
+                duration: 25,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
             }}
           />
           <defs>
@@ -243,8 +287,16 @@ export default function Timeline() {
             rotate: [0, 5, 0, -5, 0],
           }}
           transition={{
-            y: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-            rotate: { duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            y: {
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
+            rotate: {
+              duration: 20,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
           }}
         >
           <Scale size={48} />
@@ -258,8 +310,18 @@ export default function Timeline() {
             rotate: [0, -5, 0, 5, 0],
           }}
           transition={{
-            y: { duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 },
-            rotate: { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 },
+            y: {
+              duration: 12,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            },
+            rotate: {
+              duration: 18,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            },
           }}
         >
           <Gavel size={48} />
@@ -273,8 +335,18 @@ export default function Timeline() {
             rotate: [0, 3, 0, -3, 0],
           }}
           transition={{
-            y: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 },
-            rotate: { duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 },
+            y: {
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            },
+            rotate: {
+              duration: 15,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            },
           }}
         >
           <FileText size={40} />
@@ -288,8 +360,18 @@ export default function Timeline() {
             rotate: [0, -4, 0, 4, 0],
           }}
           transition={{
-            y: { duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 },
-            rotate: { duration: 17, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 },
+            y: {
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            },
+            rotate: {
+              duration: 17,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            },
           }}
         >
           <Briefcase size={44} />
@@ -303,8 +385,18 @@ export default function Timeline() {
             rotate: [0, 4, 0, -4, 0],
           }}
           transition={{
-            y: { duration: 11, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 },
-            rotate: { duration: 19, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 },
+            y: {
+              duration: 11,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.5,
+            },
+            rotate: {
+              duration: 19,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.5,
+            },
           }}
         >
           <Scroll size={42} />
@@ -318,8 +410,18 @@ export default function Timeline() {
             rotate: [0, -3, 0, 3, 0],
           }}
           transition={{
-            y: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.5 },
-            rotate: { duration: 16, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.5 },
+            y: {
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.5,
+            },
+            rotate: {
+              duration: 16,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.5,
+            },
           }}
         >
           <BookOpenCheck size={46} />
@@ -334,8 +436,18 @@ export default function Timeline() {
             rotate: [0, -5, 0, 5, 0],
           }}
           transition={{
-            y: { duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 },
-            rotate: { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 },
+            y: {
+              duration: 12,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.5,
+            },
+            rotate: {
+              duration: 18,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.5,
+            },
           }}
         >
           <Code size={40} />
@@ -349,8 +461,18 @@ export default function Timeline() {
             rotate: [0, 4, 0, -4, 0],
           }}
           transition={{
-            y: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 },
-            rotate: { duration: 16, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 },
+            y: {
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.5,
+            },
+            rotate: {
+              duration: 16,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.5,
+            },
           }}
         >
           <Server size={38} />
@@ -364,8 +486,18 @@ export default function Timeline() {
             rotate: [0, -3, 0, 3, 0],
           }}
           transition={{
-            y: { duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.5 },
-            rotate: { duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.5 },
+            y: {
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.5,
+            },
+            rotate: {
+              duration: 15,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.5,
+            },
           }}
         >
           <Database size={36} />
@@ -379,8 +511,18 @@ export default function Timeline() {
             rotate: [0, 3, 0, -3, 0],
           }}
           transition={{
-            y: { duration: 11, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3.5 },
-            rotate: { duration: 17, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3.5 },
+            y: {
+              duration: 11,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3.5,
+            },
+            rotate: {
+              duration: 17,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3.5,
+            },
           }}
         >
           <Cpu size={34} />
@@ -394,8 +536,16 @@ export default function Timeline() {
             rotate: [0, -4, 0, 4, 0],
           }}
           transition={{
-            y: { duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-            rotate: { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            y: {
+              duration: 12,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
+            rotate: {
+              duration: 18,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
           }}
         >
           <Laptop size={42} />
@@ -409,8 +559,18 @@ export default function Timeline() {
             rotate: [0, 5, 0, -5, 0],
           }}
           transition={{
-            y: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 },
-            rotate: { duration: 16, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 },
+            y: {
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            },
+            rotate: {
+              duration: 16,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            },
           }}
         >
           <MonitorSmartphone size={40} />
@@ -424,8 +584,18 @@ export default function Timeline() {
             rotate: [0, -3, 0, 3, 0],
           }}
           transition={{
-            y: { duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 },
-            rotate: { duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 },
+            y: {
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            },
+            rotate: {
+              duration: 15,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            },
           }}
         >
           <Network size={38} />
@@ -439,8 +609,18 @@ export default function Timeline() {
             rotate: [0, 4, 0, -4, 0],
           }}
           transition={{
-            y: { duration: 11, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 },
-            rotate: { duration: 17, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 },
+            y: {
+              duration: 11,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            },
+            rotate: {
+              duration: 17,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            },
           }}
         >
           <Lock size={36} />
@@ -454,8 +634,18 @@ export default function Timeline() {
             rotate: [0, -5, 0, 5, 0],
           }}
           transition={{
-            y: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.2 },
-            rotate: { duration: 16, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.2 },
+            y: {
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.2,
+            },
+            rotate: {
+              duration: 16,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.2,
+            },
           }}
         >
           <FileCode size={40} />
@@ -476,7 +666,8 @@ export default function Timeline() {
             Event Timeline
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8">
-            Three days of innovation, collaboration, and legal-tech exploration. Here's what to expect during LexHack.
+            Three days of innovation, collaboration, and legal-tech exploration.
+            Here's what to expect during LexHack.
           </p>
 
           {/* Day filter tabs */}
@@ -498,7 +689,11 @@ export default function Timeline() {
               >
                 {day === "All Days"
                   ? day
-                  : new Date(day).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+                  : new Date(day).toLocaleDateString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
               </motion.button>
             ))}
           </div>
@@ -535,13 +730,13 @@ export default function Timeline() {
           <div className="absolute left-0 md:left-1/2 bottom-0 w-6 h-6 rounded-full bg-purple-600 transform md:-translate-x-1/2 translate-y-1/2 z-20"></div>
 
           {filteredItems.map((item, index) => {
-            const isExpanded = expandedItems[index] || false
+            const isExpanded = expandedItems[index] || false;
             const importanceColor =
               item.importance === "critical"
                 ? "border-red-400 dark:border-red-600"
                 : item.importance === "high"
-                  ? "border-indigo-400 dark:border-indigo-600"
-                  : "border-purple-400 dark:border-purple-600"
+                ? "border-indigo-400 dark:border-indigo-600"
+                : "border-purple-400 dark:border-purple-600";
 
             return (
               <motion.div
@@ -551,14 +746,19 @@ export default function Timeline() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`relative mb-12 md:mb-16 ${
-                  index % 2 === 0 ? "md:pr-12 md:text-right md:ml-0 md:mr-auto" : "md:pl-12 md:ml-auto md:mr-0"
+                  index % 2 === 0
+                    ? "md:pr-12 md:text-right md:ml-0 md:mr-auto"
+                    : "md:pl-12 md:ml-auto md:mr-0"
                 } md:w-1/2 pl-12 md:pl-0`}
               >
                 {/* Timeline dot with pulse effect */}
                 <motion.div
                   className={`absolute left-0 md:left-auto md:right-0 top-0 w-6 h-6 rounded-full bg-white dark:bg-slate-800 border-4 ${importanceColor} transform md:translate-x-1/2 flex items-center justify-center z-20`}
                   whileInView={{
-                    boxShadow: ["0 0 0 0 rgba(99, 102, 241, 0.4)", "0 0 0 10px rgba(99, 102, 241, 0)"],
+                    boxShadow: [
+                      "0 0 0 0 rgba(99, 102, 241, 0.4)",
+                      "0 0 0 10px rgba(99, 102, 241, 0)",
+                    ],
                     transition: {
                       repeat: Number.POSITIVE_INFINITY,
                       duration: 1.5,
@@ -577,15 +777,23 @@ export default function Timeline() {
                 >
                   {/* Card header */}
                   <div
-                    className={`${getImportanceStyles(item.importance)} px-6 py-3 flex justify-between items-center`}
+                    className={`${getImportanceStyles(
+                      item.importance
+                    )} px-6 py-3 flex justify-between items-center`}
                   >
                     <h3 className="text-lg font-bold">{item.title}</h3>
                     <button
                       onClick={() => toggleExpanded(index)}
                       className="p-1 rounded-full hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
-                      aria-label={isExpanded ? "Collapse details" : "Expand details"}
+                      aria-label={
+                        isExpanded ? "Collapse details" : "Expand details"
+                      }
                     >
-                      {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      {isExpanded ? (
+                        <ChevronUp size={16} />
+                      ) : (
+                        <ChevronDown size={16} />
+                      )}
                     </button>
                   </div>
 
@@ -612,7 +820,9 @@ export default function Timeline() {
                       </div>
                     </div>
 
-                    <p className="text-slate-600 dark:text-slate-300 mb-3">{item.description}</p>
+                    <p className="text-slate-600 dark:text-slate-300 mb-3">
+                      {item.description}
+                    </p>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -645,7 +855,10 @@ export default function Timeline() {
                               </h4>
                               <ul className="space-y-1">
                                 {item.speakers.map((speaker, i) => (
-                                  <li key={i} className="text-sm text-slate-600 dark:text-slate-400 flex items-start">
+                                  <li
+                                    key={i}
+                                    className="text-sm text-slate-600 dark:text-slate-400 flex items-start"
+                                  >
                                     <span className="mr-2">•</span> {speaker}
                                   </li>
                                 ))}
@@ -661,7 +874,10 @@ export default function Timeline() {
                               </h4>
                               <ul className="space-y-1">
                                 {item.highlights.map((highlight, i) => (
-                                  <li key={i} className="text-sm text-slate-600 dark:text-slate-400 flex items-start">
+                                  <li
+                                    key={i}
+                                    className="text-sm text-slate-600 dark:text-slate-400 flex items-start"
+                                  >
                                     <span className="mr-2">•</span> {highlight}
                                   </li>
                                 ))}
@@ -703,12 +919,16 @@ export default function Timeline() {
                     item.importance === "critical"
                       ? "bg-red-400"
                       : item.importance === "high"
-                        ? "bg-indigo-400"
-                        : "bg-purple-400"
-                  } ${index % 2 === 0 ? "left-0 md:left-auto md:right-0" : "left-0"}`}
+                      ? "bg-indigo-400"
+                      : "bg-purple-400"
+                  } ${
+                    index % 2 === 0
+                      ? "left-0 md:left-auto md:right-0"
+                      : "left-0"
+                  }`}
                 />
               </motion.div>
-            )
+            );
           })}
 
           {/* Empty state when no items match filter */}
@@ -721,7 +941,8 @@ export default function Timeline() {
               <Calendar className="h-12 w-12 mx-auto mb-4 text-slate-400" />
               <h3 className="text-xl font-bold mb-2">No events scheduled</h3>
               <p className="text-slate-600 dark:text-slate-300">
-                There are no events scheduled for this day. Please select another day or view all events.
+                There are no events scheduled for this day. Please select
+                another day or view all events.
               </p>
             </motion.div>
           )}
@@ -743,6 +964,5 @@ export default function Timeline() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

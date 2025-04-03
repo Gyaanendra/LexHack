@@ -24,7 +24,10 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" className="relative py-20 bg-white dark:bg-slate-800 overflow-hidden">
+    <section
+      id="features"
+      className="relative py-20 bg-white dark:bg-slate-800 overflow-hidden"
+    >
       <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-blue-200 dark:via-pink-200 dark:to-yellow-200 z-0" />
       {/* Background with Shooting Stars */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -47,7 +50,12 @@ export default function Features() {
               key={i}
               initial={{ x: -100, y: startY, opacity: 1 }}
               animate={{ x: endX, y: endY, opacity: 1 }}
-              transition={{ duration, delay, repeat: Infinity, ease: "easeOut" }}
+              transition={{
+                duration,
+                delay,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
               className="absolute"
             >
               <Icon className={`h-10 w-10 ${color}`} />
@@ -69,7 +77,8 @@ export default function Features() {
             Event Breakdown
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            An intense 24-hour competition that challenges participants to innovate at the intersection of law and technology.
+            An intense 24-hour competition that challenges participants to
+            innovate at the intersection of law and technology.
           </p>
         </motion.div>
 
