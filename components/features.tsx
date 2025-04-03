@@ -8,12 +8,56 @@ import {
   Lightbulb,
   Users,
   Laptop,
+  Gavel,
+  Cpu,
+  Scale,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Features() {
+  const [windowHeight, setWindowHeight] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+    setWindowWidth(window.innerWidth);
+  }, []);
+
   return (
-    <section id="features" className="py-20 bg-white dark:bg-slate-800">
-      <div className="container mx-auto px-4">
+    <section id="features" className="relative py-20 bg-white dark:bg-slate-800 overflow-hidden">
+      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-blue-200 dark:via-pink-200 dark:to-yellow-200 z-0" />
+      {/* Background with Shooting Stars */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(35)].map((_, i) => {
+          const delay = Math.random() * 3;
+          const duration = Math.random() * 2.5 + 1.5;
+          const startY = Math.random() * windowHeight;
+          const endY = startY + (Math.random() * 500 - 250);
+          const endX = windowWidth + 100;
+          const Icon = i % 3 === 0 ? Gavel : i % 3 === 1 ? Cpu : Scale;
+          const color =
+            i % 3 === 0
+              ? "text-purple-500 dark:text-pink-400"
+              : i % 3 === 1
+              ? "text-blue-500 dark:text-green-400"
+              : "text-red-500 dark:text-yellow-400";
+
+          return (
+            <motion.div
+              key={i}
+              initial={{ x: -100, y: startY, opacity: 1 }}
+              animate={{ x: endX, y: endY, opacity: 1 }}
+              transition={{ duration, delay, repeat: Infinity, ease: "easeOut" }}
+              className="absolute"
+            >
+              <Icon className={`h-10 w-10 ${color}`} />
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Content Wrapper */}
+      <div className="relative container mx-auto px-4 z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,8 +69,7 @@ export default function Features() {
             Event Breakdown
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            An intense 24-hour competition that challenges participants to
-            innovate at the intersection of law and technology.
+            An intense 24-hour competition that challenges participants to innovate at the intersection of law and technology.
           </p>
         </motion.div>
 
