@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 import Spline from "@splinetool/react-spline";
 import { useMemo } from "react";
+import { isMobile } from "react-device-detect"; // Import isMobile
 
 export default function Hero() {
-  // Define animations and feature cards as constants to avoid recreation on each render
   const animations = useMemo(
     () => ({
       fadeIn: (delay = 0) => ({
@@ -55,7 +55,6 @@ export default function Hero() {
     []
   );
 
-  // Background icons configuration
   const backgroundIcons = useMemo(
     () => [
       {
@@ -125,7 +124,6 @@ export default function Hero() {
     []
   );
 
-  // Animation for floating effect
   const floatAnimation = {
     y: ["-10px", "10px", "-10px"],
     opacity: [0.3, 0.6, 0.3],
@@ -133,35 +131,52 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center">
-      {/* 3D Background */}
+      {/* 3D Background - Conditional Rendering */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-70 dark:opacity-50">
-        <motion.div className="relative w-full h-full" {...animations.scale}>
-          <Spline
-            scene="https://draft.spline.design/p3WmGKDAzffbsmJ8/scene.splinecode"
-            className="w-full h-full object-cover"
+        {isMobile ? (
+          // Iframe for mobile devices
+          <iframe
+            src="https://my.spline.design/animateblobtutorialcopycopy-df85c0b3365dd75853fa9388bdd32b2c/"
+            frameBorder="0"
+            width="100%"
+            height="100%"
             style={{
               position: "absolute",
-              top: "-20%",
-              left: "-15%",
-              width: "130%",
-              height: "140%",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              transform: "scale(1.8)",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
             }}
           />
-        </motion.div>
+        ) : (
+          // Original Spline for desktop
+          <motion.div className="relative w-full h-full" {...animations.scale}>
+            <Spline
+              scene="https://prod.spline.design/v4h3AQyvPrN3znrE/scene.splinecode"
+              className="w-full h-full object-cover"
+              style={{
+                position: "absolute",
+                top: "-20%",
+                left: "-15%",
+                width: "130%",
+                height: "140%",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                transform: "scale(1.8)",
+              }}
+            />
+          </motion.div>
+        )}
       </div>
 
-      {/* Background Icons Layer */}
-      <div className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-hidden">
+      {/* Background Icons Layer (Optional - uncomment if needed) */}
+      {/* <div className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-hidden">
         {backgroundIcons.map((item, index) => (
           <motion.div
             key={index}
             className="absolute"
-            style={{
-              ...item.position,
-            }}
+            style={{ ...item.position }}
             initial={{ opacity: 0 }}
             animate={{
               ...floatAnimation,
@@ -173,17 +188,13 @@ export default function Hero() {
               },
             }}
           >
-            <item.Icon
-              size={item.size}
-              className="text-slate-800/10 dark:text-slate-200/10"
-            />
+            <item.Icon size={item.size} className="text-slate-800/10 dark:text-slate-200/10" />
           </motion.div>
         ))}
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center lg:text-left">
-          {/* Event Badge */}
           <motion.div {...animations.fadeIn(0)}>
             <div className="inline-block mb-6 px-4 py-1.5 bg-white dark:bg-[#38290e] rounded-full border border-[#000000] dark:border-[#b89b6e] shadow-sm">
               <span className="text-sm font-medium text-[#000000] dark:text-[#1a1714]">
@@ -192,7 +203,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Main Heading */}
           <motion.h1
             {...animations.fadeIn(0.1)}
             className="text-5xl md:text-6xl font-bold mb-6 text-[#000000] dark:text-[#b89b6e]"
@@ -200,7 +210,6 @@ export default function Hero() {
             LEXHACK 2025
           </motion.h1>
 
-          {/* Subheadings */}
           <motion.p
             {...animations.fadeIn(0.2)}
             className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto"
@@ -216,15 +225,13 @@ export default function Hero() {
             Where Law Meets Technology. Where Innovation Drives Change.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             {...animations.fadeIn(0.4)}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <Button
               size="lg"
-              className="bg-[#000000] hover:bg-[#5e3f15] text-white shadow-lg transition-all duration-300 group
-                        dark:bg-[#b89b6e] dark:hover:bg-[#a6895d] dark:text-slate-900"
+              className="bg-[#000000] hover:bg-[#5e3f15] text-white shadow-lg transition-all duration-300 group dark:bg-[#b89b6e] dark:hover:bg-[#a6895d] dark:text-slate-900"
             >
               Register Now
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -232,15 +239,13 @@ export default function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-slate-300 hover:bg-slate-100 text-slate-700
-                         dark:border-[#b89b6e] dark:hover:bg-[#38290e] dark:text-[#b89b6e]"
+              className="border-slate-300 hover:bg-slate-100 text-slate-700 dark:border-[#b89b6e] dark:hover:bg-[#38290e] dark:text-[#b89b6e]"
             >
               Learn More
             </Button>
           </motion.div>
         </div>
 
-        {/* Feature Cards */}
         <motion.div
           {...animations.fadeIn(0.5)}
           className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"

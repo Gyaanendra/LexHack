@@ -7,6 +7,7 @@ import Timeline from "@/components/timeline";
 import Prizes from "@/components/prizes";
 import Faq from "@/components/faq";
 import Footer from "@/components/footer";
+import Image from "next/image"; // Import the Image component
 
 export default function Home() {
   return (
@@ -14,12 +15,14 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold">
-              LH
-            </div>
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-              LEXHACK 2025
-            </span>
+            {/* Replace the LH and LEXHACK 2025 with an Image component */}
+            <Image
+              src="/logo.png" // Path to your logo in the public folder
+              alt="LEXHACK 2025 Logo"
+              width={120} // Adjust width as needed
+              height={40} // Adjust height as needed
+              className="object-contain"
+            />
           </div>
 
           <nav className="hidden md:flex items-center gap-14">
@@ -29,7 +32,6 @@ export default function Home() {
             >
               About
             </a>
-
             <a
               href="#timeline"
               className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
