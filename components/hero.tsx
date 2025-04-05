@@ -14,10 +14,17 @@ import {
   Scale,
 } from "lucide-react";
 import Spline from "@splinetool/react-spline";
-import { useMemo } from "react";
-import { isMobile } from "react-device-detect"; // Import isMobile
+import { useMemo, useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 export default function Hero() {
+  const [isClientMobile, setIsClientMobile] = useState(Boolean); // null until determined
+
+  // Determine if mobile only on client-side
+  useEffect(() => {
+    setIsClientMobile(isMobile);
+  }, []);
+
   const animations = useMemo(
     () => ({
       fadeIn: (delay = 0) => ({
@@ -133,7 +140,10 @@ export default function Hero() {
     <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center">
       {/* 3D Background - Conditional Rendering */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-70 dark:opacity-50">
-        {isMobile ? (
+        {isClientMobile === null ? (
+          // Fallback during SSR/hydration (before client detection)
+          <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-400 dark:from-slate-800 dark:to-slate-900" />
+        ) : isClientMobile ? (
           // Iframe for mobile devices
           <iframe
             src="https://my.spline.design/animateblobtutorialcopycopy-df85c0b3365dd75853fa9388bdd32b2c/"
@@ -147,6 +157,7 @@ export default function Hero() {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              transform: "scale(1.8)",
             }}
           />
         ) : (
