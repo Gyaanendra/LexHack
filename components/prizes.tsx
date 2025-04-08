@@ -187,7 +187,7 @@ export default function Prizes() {
               <Calendar className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mb-4" />
               <h4 className="font-semibold mb-2">Venue</h4>
               <p className="text-slate-600 dark:text-slate-400 text-sm">
-                To be announced
+                Bennett University, Greater Noida
               </p>
             </div>
 

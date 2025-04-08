@@ -259,10 +259,10 @@ export default function Faq() {
                   possible.
                 </p>
                 <a
-                  href="mailto:info@lexhack.com"
+                  href="mailto:clti.sol@bennett.edu.in"
                   className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium hover:underline"
                 >
-                  info@lexhack.com
+                  clti.sol@bennett.edu.in
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </a>
               </div>

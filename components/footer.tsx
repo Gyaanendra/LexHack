@@ -124,7 +124,13 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="text-slate-400">
                 <span className="block font-medium text-white">Email:</span>
-                info@lexhack.com
+                <a
+                  href="mailto:clti.sol@bennett.edu.in"
+                  className="inline-flex items-center font-medium hover:underline "
+                >
+                  clti.sol@bennett.edu.in
+                  {/* <ChevronRight className="h-4 w-4 ml-1" /> */}
+                </a>
               </li>
               <li className="text-slate-400">
                 <span className="block font-medium text-white">Phone:</span>
