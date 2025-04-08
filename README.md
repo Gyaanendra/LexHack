@@ -15,7 +15,17 @@ This landing page serves as the primary information hub for potential participan
 ## Project Structure
 
 ```mermaid
-graph TD
+flowchart LR
+    classDef root fill:#f9d6ff,stroke:#333,stroke-width:2px
+    classDef app fill:#d0f0c0,stroke:#333,stroke-width:1px
+    classDef components fill:#ffb6c1,stroke:#333,stroke-width:1px
+    classDef ui fill:#ffd700,stroke:#333,stroke-width:1px
+    classDef hooks fill:#87cefa,stroke:#333,stroke-width:1px
+    classDef lib fill:#ffa07a,stroke:#333,stroke-width:1px
+    classDef public fill:#98fb98,stroke:#333,stroke-width:1px
+    classDef styles fill:#dda0dd,stroke:#333,stroke-width:1px
+    classDef files fill:#f0f8ff,stroke:#333,stroke-width:1px
+
     A[LexHack Landing] --> B[app]
     A --> C[components]
     A --> D[hooks]
@@ -54,3 +64,39 @@ graph TD
     D --> D2[use-toast.ts]
     
     E --> E1[utils.ts]
+
+    A:::root
+    B:::app
+    C:::components
+    D:::hooks
+    E:::lib
+    F:::public
+    G:::styles
+    C11:::ui
+    B1:::files
+    B2:::files
+    B3:::files
+    C1:::files
+    C2:::files
+    C3:::files
+    C4:::files
+    C5:::files
+    C6:::files
+    C7:::files
+    C8:::files
+    C9:::files
+    C10:::files
+    C11_1:::files
+    C11_2:::files
+    C11_3:::files
+    C11_4:::files
+    C11_5:::files
+    C11_6:::files
+    C11_7:::files
+    C11_8:::files
+    C11_9:::files
+    C11_10:::files
+    D1:::files
+    D2:::files
+    E1:::files
+```
