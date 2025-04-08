@@ -33,7 +33,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#about"
-                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                  className="text-slate-400 hover:text-[#78FDFF] transition-colors"
                 >
                   About
                 </a>
@@ -41,7 +41,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#features"
-                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                  className="text-slate-400 hover:text-[#FFB2ED] transition-colors"
                 >
                   Event Breakdown
                 </a>
@@ -49,7 +49,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#timeline"
-                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                  className="text-slate-400 hover:text-[#ABFF8C] transition-colors"
                 >
                   Timeline
                 </a>
@@ -79,7 +79,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                  className="text-slate-400 hover:text-[#FFEFAD] transition-colors"
                 >
                   Participant Guide
                 </a>
@@ -87,7 +87,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                  className="text-slate-400 hover:text-[#FFEFAD] transition-colors"
                 >
                   Legal Resources
                 </a>
@@ -169,6 +169,9 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      <p className="text-sm text-slate-400">
+        Registration Fee: ₹250 per team
+      </p>
     </footer>
   );
 }

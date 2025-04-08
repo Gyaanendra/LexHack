@@ -28,7 +28,7 @@ export default function Features() {
       id="features"
       className="relative py-20 bg-white dark:bg-slate-800 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-blue-200 dark:via-pink-200 dark:to-yellow-200 z-0" />
+      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-[#78FDFF]/10 dark:via-[#FFB2ED]/10 dark:to-[#FFEFAD]/10 z-0" />
       {/* Background with Shooting Stars */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {[...Array(35)].map((_, i) => {
@@ -40,10 +40,10 @@ export default function Features() {
           const Icon = i % 3 === 0 ? Gavel : i % 3 === 1 ? Cpu : Scale;
           const color =
             i % 3 === 0
-              ? "text-purple-500 dark:text-pink-400"
+              ? "text-[#78FDFF] dark:text-[#FFB2ED]"
               : i % 3 === 1
-              ? "text-blue-500 dark:text-green-400"
-              : "text-red-500 dark:text-yellow-400";
+              ? "text-[#ABFF8C] dark:text-[#FFEFAD]"
+              : "text-[#FCDCFF] dark:text-[#FF8EDB]";
 
           return (
             <motion.div
@@ -73,7 +73,7 @@ export default function Features() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD]">
             Event Breakdown
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">

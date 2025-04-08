@@ -39,6 +39,7 @@ interface TimelineItem {
   speakers: string[];
   highlights: string[];
   importance: "high" | "medium" | "critical";
+  timezone?: string;
 }
 
 // Define component props if any (currently none, but added for future extensibility)
@@ -47,81 +48,61 @@ interface TimelineProps {}
 // Type for expanded items state
 type ExpandedItems = Record<number, boolean>;
 
-export default function Timeline() {
-  const timelineItems = [
+export default function Timeline({}: TimelineProps) {
+  const timelineItems: TimelineItem[] = [
     {
       date: "April 17, 2025",
-      time: "9:00 AM - 12:00 PM",
-      title: "Opening Ceremony",
-      description: "Welcome address, keynote speakers, and team formation.",
-      location: "Main Auditorium",
-      tags: ["Keynote", "Networking"],
-      speakers: [
-        "Sarah Johnson, LegalTech Alliance",
-        "Prof. David Chen, Harvard Law",
-      ],
-      highlights: ["Welcome kit distribution", "Coffee and breakfast provided"],
-      importance: "high",
-    },
-    {
-      date: "April 17, 2025",
-      time: "1:00 PM - 6:00 PM",
-      title: "Hacking Begins",
-      description: "Teams start working on their projects with mentor support.",
+      time: "06:00 PM - 11:00 AM (next day)",
+      title: "BUILD - Overnight Hackathon",
+      description: "Unleash Innovation: Teams will brainstorm, prototype, and develop groundbreaking tech solutions—think AI-driven legal assistants, blockchain-powered compliance tools and next-gen AI frameworks.",
       location: "Innovation Lab",
-      tags: ["Coding", "Mentorship"],
+      tags: ["Hackathon", "Development", "Innovation"],
       speakers: [],
-      highlights: ["Mentor matching session at 2PM", "Tech resource showcase"],
-      importance: "medium",
-    },
-    {
-      date: "April 18, 2025",
-      time: "9:00 AM - 10:00 AM",
-      title: "Workshop: Legal API Integration",
-      description:
-        "Learn how to integrate legal databases and APIs into your project.",
-      location: "Workshop Room B",
-      tags: ["Technical", "Workshop"],
-      speakers: ["Alex Rivera, LexisNexis", "Maria Santos, API Specialist"],
-      highlights: ["Hands-on coding session", "API access tokens provided"],
+      highlights: ["Overnight coding session", "Mentors available throughout"],
       importance: "high",
+      timezone: "IST"
     },
     {
       date: "April 18, 2025",
-      time: "12:00 PM - 1:30 PM",
-      title: "Networking Lunch",
-      description:
-        "Connect with industry professionals and other participants over lunch.",
-      location: "Atrium Garden",
-      tags: ["Networking", "Food"],
+      time: "01:00 PM - 04:00 PM",
+      title: "DEFEND : Courtroom Battle",
+      description: "Face the Law: Your innovation will be tested against IP rights, data privacy laws, compliance challenges, and ethical dilemmas. Can you prove your idea is legally airtight?",
+      location: "Mock Courtroom",
+      tags: ["Legal Defense", "Compliance", "Ethics"],
       speakers: [],
-      highlights: [
-        "Catered lunch included",
-        "Seating arranged by interest areas",
-      ],
-      importance: "medium",
+      highlights: ["Legal experts as judges", "Real-world scenario testing"],
+      importance: "high",
+      timezone: "IST"
     },
     {
       date: "April 18, 2025",
-      time: "2:00 PM - 3:00 PM",
-      title: "Panel: Ethics in Legal Tech",
-      description:
-        "Industry experts discuss ethical considerations in legal technology.",
-      location: "Main Auditorium",
-      tags: ["Panel", "Ethics"],
-      speakers: [
-        "Judge Elena Rodriguez",
-        "Dr. Michael Wei, Ethics Institute",
-        "Catherine Park, Legal Aid Society",
-      ],
-      highlights: ["Q&A session", "Case study analysis"],
+      time: "04:30 PM - 07:00 PM",
+      title: "PITCH : Shark Tank style funding round",
+      description: "In a high-pressure investor-style showdown, teams will pitch their projects before top industry experts, legal heavyweights, and venture capitalists.",
+      location: "Pitch Arena",
+      tags: ["Pitch", "Funding", "Presentation"],
+      speakers: [],
+      highlights: ["Venture capitalists present", "Investment opportunities"],
       importance: "high",
+      timezone: "IST"
     },
+    {
+      date: "April 18, 2025",
+      time: "08:00 PM - 11:00 PM",
+      title: "RELAX : Movie Night & Surprises",
+      description: "Unwind after the intense competition with a special movie screening and other fun surprises to celebrate your hard work and innovation.",
+      location: "Event Hall",
+      tags: ["Entertainment", "Networking", "Celebration"],
+      speakers: [],
+      highlights: ["Movie screening", "Surprise activities", "Refreshments"],
+      importance: "medium",
+      timezone: "IST"
+    }
   ];
 
-  const timelineRef = useRef(null);
-  const [expandedItems, setExpandedItems] = useState({});
-  const [activeDay, setActiveDay] = useState("All Days");
+  const timelineRef = useRef<HTMLElement>(null);
+  const [expandedItems, setExpandedItems] = useState<ExpandedItems>({});
+  const [activeDay, setActiveDay] = useState<string>("All Days");
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start end", "end end"],
@@ -144,7 +125,7 @@ export default function Timeline() {
       : timelineItems.filter((item) => item.date === activeDay);
 
   // Toggle expanded state for a timeline item
-  const toggleExpanded = (index) => {
+  const toggleExpanded = (index: number) => {
     setExpandedItems((prev) => ({
       ...prev,
       [index]: !prev[index],
@@ -152,7 +133,7 @@ export default function Timeline() {
   };
 
   // Get importance styling
-  const getImportanceStyles = (importance) => {
+  const getImportanceStyles = (importance: TimelineItem['importance']) => {
     switch (importance) {
       case "critical":
         return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
@@ -163,6 +144,23 @@ export default function Timeline() {
       default:
         return "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300";
     }
+  };
+
+  // Handle brochure download
+  const handleDownloadBrochure = () => {
+    // Path to your PDF file - adjust this to the actual path of your brochure
+    const pdfPath = '/Lexhack.pdf';
+    
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.download = 'LexHack-Event-Brochure.pdf';
+    link.target = '_blank';
+    
+    // Append to the document, click it, and remove it
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -954,8 +952,12 @@ export default function Timeline() {
             <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors">
               <Calendar size={16} />
             </button>
-            <button className="px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors">
-              Download Schedule
+            <button 
+              onClick={handleDownloadBrochure}
+              className="px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors flex items-center"
+            >
+              <FileText size={16} className="mr-2" />
+              Download Brochure
             </button>
             <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors">
               <MessageSquare size={16} />
@@ -964,5 +966,4 @@ export default function Timeline() {
         </div>
       </div>
     </section>
-  );
-}
+  );}

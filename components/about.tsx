@@ -96,7 +96,7 @@ export default function About() {
       className="relative py-20 bg-white dark:bg-slate-800 overflow-hidden"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-blue-200 dark:via-pink-200 dark:to-yellow-200 z-0" />
+      <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-[#78FDFF]/10 dark:via-[#FFB2ED]/10 dark:to-[#FFEFAD]/10 z-0" />
 
       {/* Background with Shooting Stars - Only render when mounted */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -128,8 +128,8 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
-            About
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD]">
+            About LEXHACK 2025
           </h2>
         </motion.div>
 

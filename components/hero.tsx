@@ -13,18 +13,10 @@ import {
   Cpu,
   Scale,
 } from "lucide-react";
-import Spline from "@splinetool/react-spline";
-import { useMemo, useState, useEffect } from "react";
-import { isMobile } from "react-device-detect";
+import { useMemo } from "react";
+import Link from "next/link";
 
 export default function Hero() {
-  const [isClientMobile, setIsClientMobile] = useState(Boolean); // null until determined
-
-  // Determine if mobile only on client-side
-  useEffect(() => {
-    setIsClientMobile(isMobile);
-  }, []);
-
   const animations = useMemo(
     () => ({
       fadeIn: (delay = 0) => ({
@@ -32,11 +24,6 @@ export default function Hero() {
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.5, delay },
       }),
-      scale: {
-        initial: { scale: 1 },
-        animate: { scale: 1.5 },
-        transition: { duration: 0.8, ease: "easeOut" },
-      },
     }),
     []
   );
@@ -62,152 +49,14 @@ export default function Hero() {
     []
   );
 
-  const backgroundIcons = useMemo(
-    () => [
-      {
-        Icon: Code,
-        position: { top: "15%", left: "10%" },
-        size: 24,
-        delay: 0,
-        duration: 20,
-      },
-      {
-        Icon: Shield,
-        position: { top: "25%", right: "15%" },
-        size: 28,
-        delay: 0.5,
-        duration: 25,
-      },
-      {
-        Icon: PresentationChart,
-        position: { bottom: "20%", left: "20%" },
-        size: 32,
-        delay: 1,
-        duration: 22,
-      },
-      {
-        Icon: Lightbulb,
-        position: { top: "40%", left: "85%" },
-        size: 26,
-        delay: 1.5,
-        duration: 18,
-      },
-      {
-        Icon: Users,
-        position: { bottom: "30%", right: "25%" },
-        size: 30,
-        delay: 2,
-        duration: 24,
-      },
-      {
-        Icon: Laptop,
-        position: { top: "65%", left: "15%" },
-        size: 28,
-        delay: 2.5,
-        duration: 19,
-      },
-      {
-        Icon: Gavel,
-        position: { top: "10%", left: "60%" },
-        size: 34,
-        delay: 3,
-        duration: 23,
-      },
-      {
-        Icon: Cpu,
-        position: { bottom: "15%", right: "10%" },
-        size: 22,
-        delay: 3.5,
-        duration: 21,
-      },
-      {
-        Icon: Scale,
-        position: { top: "50%", left: "40%" },
-        size: 36,
-        delay: 4,
-        duration: 26,
-      },
-    ],
-    []
-  );
-
-  const floatAnimation = {
-    y: ["-10px", "10px", "-10px"],
-    opacity: [0.3, 0.6, 0.3],
-  };
-
   return (
-    <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center">
-      {/* 3D Background - Conditional Rendering */}
-      <div className="absolute inset-0 w-full h-full z-0 opacity-70 dark:opacity-50">
-        {isClientMobile === null ? (
-          // Fallback during SSR/hydration (before client detection)
-          <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-400 dark:from-slate-800 dark:to-slate-900" />
-        ) : isClientMobile ? (
-          // Iframe for mobile devices
-          <iframe
-            src="https://my.spline.design/animateblobtutorialcopycopy-df85c0b3365dd75853fa9388bdd32b2c/"
-            frameBorder="0"
-            width="100%"
-            height="100%"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transform: "scale(1.8)",
-            }}
-          />
-        ) : (
-          // Original Spline for desktop
-          <motion.div className="relative w-full h-full" {...animations.scale}>
-            <Spline
-              scene="https://prod.spline.design/v4h3AQyvPrN3znrE/scene.splinecode"
-              className="w-full h-full object-cover"
-              style={{
-                position: "absolute",
-                top: "-20%",
-                left: "-15%",
-                width: "130%",
-                height: "140%",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                transform: "scale(1.8)",
-              }}
-            />
-          </motion.div>
-        )}
-      </div>
-
-      {/* Background Icons Layer (Optional - uncomment if needed) */}
-      {/* <div className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-hidden">
-        {backgroundIcons.map((item, index) => (
-          <motion.div
-            key={index}
-            className="absolute"
-            style={{ ...item.position }}
-            initial={{ opacity: 0 }}
-            animate={{
-              ...floatAnimation,
-              transition: {
-                duration: item.duration,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: item.delay,
-                ease: "easeInOut",
-              },
-            }}
-          >
-            <item.Icon size={item.size} className="text-slate-800/10 dark:text-slate-200/10" />
-          </motion.div>
-        ))}
-      </div> */}
+    <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center bg-white dark:bg-slate-900">
+      {/* Background is now white (or dark slate in dark mode) */}
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center lg:text-left">
           <motion.div {...animations.fadeIn(0)}>
-            <div className="inline-block mb-6 px-4 py-1.5 bg-white dark:bg-[#38290e] rounded-full border border-[#000000] dark:border-[#b89b6e] shadow-sm">
+            <div className="inline-block mb-6 px-4 py-1.5 bg-slate-100 dark:bg-[#38290e] rounded-full border border-[#000000] dark:border-[#b89b6e] shadow-sm">
               <span className="text-sm font-medium text-[#000000] dark:text-[#1a1714]">
                 April 17-18, 2025 • 24-Hour Hackathon
               </span>
@@ -238,22 +87,18 @@ export default function Hero() {
 
           <motion.div
             {...animations.fadeIn(0.4)}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              size="lg"
-              className="bg-[#000000] hover:bg-[#5e3f15] text-white shadow-lg transition-all duration-300 group dark:bg-[#b89b6e] dark:hover:bg-[#a6895d] dark:text-slate-900"
-            >
-              Register Now
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-300 hover:bg-slate-100 text-slate-700 dark:border-[#b89b6e] dark:hover:bg-[#38290e] dark:text-[#b89b6e]"
-            >
-              Learn More
-            </Button>
+            <Link href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD] hover:opacity-90 text-slate-800 shadow-lg transition-all duration-300 group"
+              >
+                Register Now
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+            
           </motion.div>
         </div>
 
@@ -264,7 +109,7 @@ export default function Hero() {
           {featureCards.map((card, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-950/50 border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
+              className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-950/50 border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
             >
               <div className="w-12 h-12 rounded-full bg-white dark:bg-[#38290e] flex items-center justify-center mb-4 group-hover:bg-[#000000] transition-colors duration-300">
                 <card.icon className="h-6 w-6 text-[#000000] dark:text-[#b89b6e] group-hover:text-white transition-colors duration-300" />

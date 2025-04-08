@@ -195,7 +195,7 @@ export default function Prizes() {
               <Trophy className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-4" />
               <h4 className="font-semibold mb-2">Registration Fee</h4>
               <p className="text-slate-600 dark:text-slate-400 text-sm">
-                ₹150 per team
+                ₹250 per team
               </p>
             </div>
 
@@ -214,9 +214,6 @@ export default function Prizes() {
               ⏳ Limited Slots Available! Early registrations are recommended
               due to the high demand for participation.
             </p>
-            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300 px-8 py-3 rounded-lg text-lg font-medium">
-              Register Now
-            </Button>
             <p className="mt-6 text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
               Innovate. Defend. Disrupt.
             </p>

@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-
+import Link from "next/link";
 // Define FAQ interfaces
 interface FAQ {
   question: string;
@@ -279,12 +279,11 @@ export default function Faq() {
             <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
               Are You Ready to Shape the Future of Law & Technology?
             </h3>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300 px-8 py-6 text-lg"
-            >
-              Register for LEXHACK 2025
-            </Button>
+            <Link href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD] hover:opacity-90 text-slate-800 shadow-lg shadow-[#78FDFF]/20 hover:shadow-[#78FDFF]/40 transition-all duration-300 w-60 h-12">
+                Register Now
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </div>

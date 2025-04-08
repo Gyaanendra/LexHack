@@ -8,6 +8,7 @@ import Prizes from "@/components/prizes";
 import Faq from "@/components/faq";
 import Footer from "@/components/footer";
 import Image from "next/image"; // Import the Image component
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
           <nav className="hidden md:flex items-center gap-14">
             <a
               href="#about"
-              className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-[#78FDFF] dark:text-slate-300 dark:hover:text-[#ABFF8C] transition-colors"
             >
               About
             </a>
@@ -53,9 +54,11 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300">
-              Register Now
-            </Button>
+            <Link href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD] hover:opacity-90 text-slate-800 shadow-lg shadow-[#78FDFF]/20 hover:shadow-[#78FDFF]/40 transition-all duration-300">
+                Register Now
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
