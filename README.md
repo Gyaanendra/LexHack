@@ -16,15 +16,15 @@ This landing page serves as the primary information hub for potential participan
 
 ```mermaid
 flowchart LR
-    classDef root fill:#f9d6ff,stroke:#333,stroke-width:2px
-    classDef app fill:#d0f0c0,stroke:#333,stroke-width:1px
-    classDef components fill:#ffb6c1,stroke:#333,stroke-width:1px
-    classDef ui fill:#ffd700,stroke:#333,stroke-width:1px
-    classDef hooks fill:#87cefa,stroke:#333,stroke-width:1px
-    classDef lib fill:#ffa07a,stroke:#333,stroke-width:1px
-    classDef public fill:#98fb98,stroke:#333,stroke-width:1px
-    classDef styles fill:#dda0dd,stroke:#333,stroke-width:1px
-    classDef files fill:#f0f8ff,stroke:#333,stroke-width:1px
+    classDef root fill:#f9d6ff,stroke:#333,stroke-width:2px,color:#000
+    classDef app fill:#d0f0c0,stroke:#333,stroke-width:1px,color:#000
+    classDef components fill:#ffb6c1,stroke:#333,stroke-width:1px,color:#000
+    classDef ui fill:#ffd700,stroke:#333,stroke-width:1px,color:#000
+    classDef hooks fill:#87cefa,stroke:#333,stroke-width:1px,color:#000
+    classDef lib fill:#ffa07a,stroke:#333,stroke-width:1px,color:#000
+    classDef public fill:#98fb98,stroke:#333,stroke-width:1px,color:#000
+    classDef styles fill:#dda0dd,stroke:#333,stroke-width:1px,color:#000
+    classDef files fill:#f0f8ff,stroke:#333,stroke-width:1px,color:#000
 
     A[LexHack Landing] --> B[app]
     A --> C[components]
@@ -98,5 +98,4 @@ flowchart LR
     C11_10:::files
     D1:::files
     D2:::files
-    E1:::files
-```
+    E1:::files```
