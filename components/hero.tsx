@@ -15,6 +15,9 @@ import {
 } from "lucide-react";
 import { useMemo } from "react";
 import Link from "next/link";
+import { WavyBackground } from "@/components/ui/wavy-background";
+// Removing the diagonal wavy background import
+// import { DiagonalWavyBackground } from "@/components/ui/diagonal-wavy-background";
 
 export default function Hero() {
   const animations = useMemo(
@@ -50,8 +53,30 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center bg-white dark:bg-slate-900">
-      {/* Background is now white (or dark slate in dark mode) */}
+    <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center">
+      {/* First Wavy Background - Bottom layer */}
+      <WavyBackground 
+        containerClassName="absolute inset-0 z-0" 
+        className="w-full h-full"
+        colors={['#78FDFF', '#FFB2ED', '#FFEFAD']}
+        waveWidth={50}
+        backgroundFill="rgba(255, 255, 255, 0.8)"
+        blur={10}
+        speed="slow"
+        waveOpacity={0.3}
+      />
+      
+      {/* Second Wavy Background - Top layer (replacing diagonal)
+      <WavyBackground 
+        containerClassName="absolute inset-0 z-1" 
+        className="w-full h-full"
+        colors={['#78FDFF', '#FFB2ED', '#FFEFAD']}
+        waveWidth={60}
+        backgroundFill="transparent"
+        blur={8}
+        speed="fast"
+        waveOpacity={0.4}
+      /> */}
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center lg:text-left">
@@ -109,7 +134,7 @@ export default function Hero() {
           {featureCards.map((card, index) => (
             <div
               key={index}
-              className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-950/50 border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
+              className="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-6 shadow-lg shadow-slate-200 dark:shadow-slate-950/50 border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
             >
               <div className="w-12 h-12 rounded-full bg-white dark:bg-[#38290e] flex items-center justify-center mb-4 group-hover:bg-[#000000] transition-colors duration-300">
                 <card.icon className="h-6 w-6 text-[#000000] dark:text-[#b89b6e] group-hover:text-white transition-colors duration-300" />
