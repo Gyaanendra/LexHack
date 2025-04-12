@@ -64,7 +64,7 @@ export default function Faq() {
       {
         question: "What is the registration fee?",
         answer:
-          "The registration fee is ₹150 per team, regardless of the number of members (up to the maximum of 5). This fee covers participation, meals, workshops, and event materials.",
+          "The registration fee is ₹250 per team, regardless of the number of members (up to the maximum of 5). This fee covers participation, meals, workshops, and event materials.",
       },
       {
         question: "How are winners selected?",
@@ -279,7 +279,11 @@ export default function Faq() {
             <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
               Are You Ready to Shape the Future of Law & Technology?
             </h3>
-            <Link href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button className="bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD] hover:opacity-90 text-slate-800 shadow-lg shadow-[#78FDFF]/20 hover:shadow-[#78FDFF]/40 transition-all duration-300 w-60 h-12">
                 Register Now
               </Button>

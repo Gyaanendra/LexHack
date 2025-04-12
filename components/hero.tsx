@@ -54,29 +54,17 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden py-32 md:py-48 min-h-screen flex items-center">
-      {/* First Wavy Background - Bottom layer */}
-      <WavyBackground 
-        containerClassName="absolute inset-0 z-0" 
+      {/* Wavy Background - repositioned to align with LEXHACK title */}
+      <WavyBackground
+        containerClassName="absolute inset-0 -translate-y-36 z-0"
         className="w-full h-full"
-        colors={['#78FDFF', '#FFB2ED', '#FFEFAD']}
-        waveWidth={50}
+        colors={["#78FDFF", "#FFB2ED", "#FFEFAD"]}
+        waveWidth={80}
         backgroundFill="rgba(255, 255, 255, 0.8)"
         blur={10}
         speed="slow"
         waveOpacity={0.3}
       />
-      
-      {/* Second Wavy Background - Top layer (replacing diagonal)
-      <WavyBackground 
-        containerClassName="absolute inset-0 z-1" 
-        className="w-full h-full"
-        colors={['#78FDFF', '#FFB2ED', '#FFEFAD']}
-        waveWidth={60}
-        backgroundFill="transparent"
-        blur={8}
-        speed="fast"
-        waveOpacity={0.4}
-      /> */}
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center lg:text-left">
@@ -114,7 +102,11 @@ export default function Hero() {
             {...animations.fadeIn(0.4)}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://unstop.com/o/lKoBsy6?utm_medium=Share&utm_source=shortUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#78FDFF] via-[#FFB2ED] to-[#FFEFAD] hover:opacity-90 text-slate-800 shadow-lg transition-all duration-300 group"
@@ -123,7 +115,6 @@ export default function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            
           </motion.div>
         </div>
 

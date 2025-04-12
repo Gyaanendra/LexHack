@@ -175,9 +175,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="text-sm text-slate-400">
-        Registration Fee: ₹250 per team
-      </p>
     </footer>
   );
 }
