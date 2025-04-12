@@ -54,50 +54,54 @@ export default function Timeline({}: TimelineProps) {
       date: "April 17, 2025",
       time: "06:00 PM - 11:00 AM (next day)",
       title: "BUILD - Overnight Hackathon",
-      description: "Unleash Innovation: Teams will brainstorm, prototype, and develop groundbreaking tech solutions—think AI-driven legal assistants, blockchain-powered compliance tools and next-gen AI frameworks.",
+      description:
+        "Unleash Innovation: Teams will brainstorm, prototype, and develop groundbreaking tech solutions—think AI-driven legal assistants, blockchain-powered compliance tools and next-gen AI frameworks.",
       location: "N & P block",
       tags: ["Hackathon", "Development", "Innovation"],
       speakers: [],
       highlights: ["Overnight coding session", "Mentors available throughout"],
       importance: "high",
-      timezone: "IST"
+      timezone: "IST",
     },
     {
       date: "April 18, 2025",
       time: "01:00 PM - 04:00 PM",
       title: "DEFEND : Courtroom Battle",
-      description: "Face the Law: Your innovation will be tested against IP rights, data privacy laws, compliance challenges, and ethical dilemmas. Can you prove your idea is legally airtight?",
+      description:
+        "Face the Law: Your innovation will be tested against IP rights, data privacy laws, compliance challenges, and ethical dilemmas. Can you prove your idea is legally airtight?",
       location: "Moot Courtroom",
       tags: ["Legal Defense", "Compliance", "Ethics"],
       speakers: [],
       highlights: ["Legal experts as judges", "Real-world scenario testing"],
       importance: "high",
-      timezone: "IST"
+      timezone: "IST",
     },
     {
       date: "April 18, 2025",
       time: "04:30 PM - 07:00 PM",
       title: "PITCH : Shark Tank style funding round",
-      description: "In a high-pressure investor-style showdown, teams will pitch their projects before top industry experts, legal heavyweights, and venture capitalists.",
-      location: "Bennett Hatcher",
+      description:
+        "In a high-pressure investor-style showdown, teams will pitch their projects before top industry experts, legal heavyweights, and venture capitalists.",
+      location: "Bennett Hatchery",
       tags: ["Pitch", "Funding", "Presentation"],
       speakers: [],
       highlights: ["Venture capitalists present", "Investment opportunities"],
       importance: "high",
-      timezone: "IST"
+      timezone: "IST",
     },
     {
       date: "April 18, 2025",
       time: "08:00 PM - 11:00 PM",
       title: "RELAX : Movie Night & Surprises",
-      description: "Unwind after the intense competition with a special movie screening and other fun surprises to celebrate your hard work and innovation.",
-      location: "Event Hall",
+      description:
+        "Unwind after the intense competition with a special movie screening and other fun surprises to celebrate your hard work and innovation.",
+      location: "letcher Hall",
       tags: ["Entertainment", "Networking", "Celebration"],
       speakers: [],
       highlights: ["Movie screening", "Surprise activities", "Refreshments"],
       importance: "medium",
-      timezone: "IST"
-    }
+      timezone: "IST",
+    },
   ];
 
   const timelineRef = useRef<HTMLElement>(null);
@@ -133,7 +137,7 @@ export default function Timeline({}: TimelineProps) {
   };
 
   // Get importance styling
-  const getImportanceStyles = (importance: TimelineItem['importance']) => {
+  const getImportanceStyles = (importance: TimelineItem["importance"]) => {
     switch (importance) {
       case "critical":
         return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
@@ -149,14 +153,14 @@ export default function Timeline({}: TimelineProps) {
   // Handle brochure download
   const handleDownloadBrochure = () => {
     // Path to your PDF file - adjust this to the actual path of your brochure
-    const pdfPath = '/Lexhack.pdf';
-    
+    const pdfPath = "/Lexhack.pdf";
+
     // Create an anchor element
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = pdfPath;
-    link.download = 'LexHack-Event-Brochure.pdf';
-    link.target = '_blank';
-    
+    link.download = "LexHack-Event-Brochure.pdf";
+    link.target = "_blank";
+
     // Append to the document, click it, and remove it
     document.body.appendChild(link);
     link.click();
@@ -952,7 +956,7 @@ export default function Timeline({}: TimelineProps) {
             <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors">
               <Calendar size={16} />
             </button>
-            <button 
+            <button
               onClick={handleDownloadBrochure}
               className="px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors flex items-center"
             >
@@ -966,4 +970,5 @@ export default function Timeline({}: TimelineProps) {
         </div>
       </div>
     </section>
-  );}
+  );
+}
