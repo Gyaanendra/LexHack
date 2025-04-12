@@ -95,7 +95,7 @@ export default function Timeline({}: TimelineProps) {
       title: "RELAX : Movie Night & Surprises",
       description:
         "Unwind after the intense competition with a special movie screening and other fun surprises to celebrate your hard work and innovation.",
-      location: "letcher Hall",
+      location: "Lecture Hall",
       tags: ["Entertainment", "Networking", "Celebration"],
       speakers: [],
       highlights: ["Movie screening", "Surprise activities", "Refreshments"],
